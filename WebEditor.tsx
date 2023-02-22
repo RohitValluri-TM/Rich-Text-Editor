@@ -139,6 +139,7 @@
 
 import React, { useState, useMemo } from "react";
 import {RichTextEditor} from '@mantine/rte'
+import { Button, TouchableOpacity, View } from "react-native";
 
 const people = [
     { id: 1, value: 'Bill Horsefighter' },
@@ -156,6 +157,13 @@ const people = [
 
 const WebEditor = () =>{
     const [value, setValue] = useState('')
+    const [show, setShow] = useState(false)
+    const raw = value.replace(/<[^>]+>/g, '')
+    const display=()=>{
+      
+      console.log("value", raw)
+      setShow(true)
+    }
     const mentions = useMemo(
         () => ({
           allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
@@ -172,6 +180,9 @@ const WebEditor = () =>{
       );
     
       return (
+        <View>
+          {!show ?
+          <View>
         <RichTextEditor
           id="rte"
           value={value}
@@ -179,6 +190,13 @@ const WebEditor = () =>{
           placeholder="Type @ or # to see mentions autocomplete"
           mentions={mentions}
         />
+        <Button title="Save" onPress={display}/>
+        </View>
+          : 
+          <View>
+            <TouchableOpacity onPress={()=>setShow(false)}>{raw}</TouchableOpacity>
+          </View>}
+        </View>
       );
 }
 

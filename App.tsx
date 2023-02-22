@@ -13,25 +13,26 @@ export default function App() {
   // const contentState = ContentState.createFromText("Add a Description")
   // const raw = convertToRaw(contentState)
   
-if(Platform.OS === 'web'){
-  return(
-    <View><WebEditor/></View>
-  )
-}
-return(
-  <View><NativeEditor/></View>
-)
-  // return (
+// if(Platform.OS === 'web'){
+//   return(
+//     <View><WebEditor/></View>
+//   )
+// }
+// return(
+//   <View><NativeEditor/></View>
+// )
+  return (
     
-  //   <View style={styles.container}>
+    <View style={styles.container}>
       
-  //     <Text style={styles.heading}>Description</Text>
-  //     {Platform.OS==='web' ? <WebEditor/> : <NativeEditor/>}
-  //     {/* <WebEditor/>
-  //     <NativeEditor/> */}
-  //     {/* <TempScreen/> */}
-  //   </View>
-  // );
+      <Text style={styles.heading}>Description</Text>
+      {/* {Platform.OS==='web' ? <WebEditor/> : <NativeEditor/>} */}
+      {/* <WebEditor/>
+      <NativeEditor/> */}
+      {/* <TempScreen/> */}
+      <NativeEditor/>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
