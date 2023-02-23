@@ -1,31 +1,23 @@
-import { StyleSheet, Text, View, KeyboardAvoidingView, ScrollView, SafeAreaView, Platform, Button  } from 'react-native'
+import { StyleSheet, Text, View, KeyboardAvoidingView, ScrollView,Pressable, SafeAreaView, Platform, Button  } from 'react-native'
 import {RichEditor, RichToolbar, actions, RichEditorProps} from 'react-native-pell-rich-editor';
 import React, {useRef, useState} from 'react'
 // import { mentions } from './WebEditor';
 // import TextArea from 'react-mention-plugin'
-import { Mention, MentionsInput } from 'react-mentions';
-import MentionsTextInput from 'react-native-mentions'
+// import { Mention, MentionsInput } from 'react-mentions';
+// import MentionsTextInput from 'react-native-mentions'
+// import Mentions from 'rc-mentions';
+import {MentionInput, MentionSuggestionsProps, Suggestion} from 'react-native-controlled-mentions'
 
 const NativeEditor : React.FC<RichEditorProps> = () => {
-    const [input, setInput] = useState('')
-const suggestions = [
-  {
-    id: 1,
-    avatar: 'https://randomuser.me/api/portraits/men/33.jpg',
-    value: 'Fred_Smith',
-    label: 'Fred Smith',
-  },
-  {
-    id: 2,
-    avatar: 'https://randomuser.me/api/portraits/men/59.jpg',
-    value: 'Ronald_Horn',
-    label: 'Ronald Horn',
-  }
-];
+    const [input, setInput] = useState('<ol><li>sfsdffjkerfsdf<i style="color:red;">sdff</i><br></li></ol>')
+
 	const richText = useRef();
     const display = ()=>{
-        console.log(richText, "rich")
+        // Alert.alert(richText)
+       console.log(input, "input")
     }
+    // const [value, setValue] = useState('Hello @[Mary](2)! How are you?');
+
 	return (
         <SafeAreaView>            
             <RichToolbar
@@ -54,17 +46,13 @@ const suggestions = [
                     <RichEditor
                         ref={richText}
                         placeholder="Type Here"
-                        
-                        onChange={ descriptionText => {
-                            console.log("descriptionText:", descriptionText);
-                        }}
+                        initialContentHTML={input}
+                        onChange={(value)=>setInput(value)}
                     />
                     
                 </KeyboardAvoidingView>
             </ScrollView>
-            <MentionsInput value={input} onChange={(e)=>setInput(e.target.value)}>
-                    <Mention trigger="@" data={suggestions}></Mention>
-                    </MentionsInput>
+            
             <View><Button title='Save' onPress={display}/></View>
         </SafeAreaView>
     );

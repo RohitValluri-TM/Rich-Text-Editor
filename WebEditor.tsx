@@ -161,7 +161,7 @@ const WebEditor = () =>{
     const raw = value.replace(/<[^>]+>/g, '')
     const display=()=>{
       
-      console.log("value", raw)
+      console.log("value", value)
       setShow(true)
     }
     const mentions = useMemo(
@@ -187,6 +187,7 @@ const WebEditor = () =>{
           id="rte"
           value={value}
           onChange={setValue}
+          
           placeholder="Type @ or # to see mentions autocomplete"
           mentions={mentions}
         />
@@ -194,7 +195,7 @@ const WebEditor = () =>{
         </View>
           : 
           <View>
-            <TouchableOpacity onPress={()=>setShow(false)}>{raw}</TouchableOpacity>
+            <TouchableOpacity onPress={()=>setShow(false)}>{value}</TouchableOpacity>
           </View>}
         </View>
       );
